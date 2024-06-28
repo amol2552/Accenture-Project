@@ -1,0 +1,87 @@
+table 'Task 3_Final Content Data set'
+	lineageTag: 0bce8a10-21e4-4781-86a5-3eeb638de968
+
+	column Column1
+		dataType: int64
+		formatString: 0
+		lineageTag: b96a1bd1-9c2e-42ff-85bb-343b9445be87
+		summarizeBy: sum
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Content ID'
+		dataType: string
+		lineageTag: fce60e1a-8adf-49a6-9ccc-278b843cee12
+		summarizeBy: none
+		sourceColumn: Content ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Reaction Type'
+		dataType: string
+		lineageTag: 3525d12c-a4c1-43f6-b214-33a9ff535817
+		summarizeBy: none
+		sourceColumn: Reaction Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Datetime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: cab1ae18-1939-4117-907b-7e76c609e79c
+		summarizeBy: none
+		sourceColumn: Datetime
+
+		variation Variation
+			isDefault
+			relationship: 152c5b0e-0f70-4177-a98f-ab1adbfa9817
+			defaultHierarchy: LocalDateTable_5d1334ae-f530-4021-a5a0-21b9e716dcd4.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Content Type'
+		dataType: string
+		lineageTag: b61da63a-7f3d-404a-8cf1-24a254be36b1
+		summarizeBy: none
+		sourceColumn: Content Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 04f89242-180c-4ca9-9d7c-29c295cf79ad
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sentiment
+		dataType: string
+		lineageTag: da0a64d1-3127-4597-8e97-228a9db19475
+		summarizeBy: none
+		sourceColumn: Sentiment
+
+		annotation SummarizationSetBy = Automatic
+
+	column Score
+		dataType: int64
+		formatString: 0
+		lineageTag: 99d5dda9-1338-47d0-93ff-378a8c207cd3
+		summarizeBy: sum
+		sourceColumn: Score
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Task 3_Final Content Data set' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Dell\Downloads\Task 3_Final Content Data set.csv"),[Delimiter=",", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"", Int64.Type}, {"Content ID", type text}, {"Reaction Type", type text}, {"Datetime", type datetime}, {"Content Type", type text}, {"Category", type text}, {"Sentiment", type text}, {"Score", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

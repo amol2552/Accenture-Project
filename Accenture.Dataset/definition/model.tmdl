@@ -1,0 +1,20 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-IN
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["Task 3_Final Content Data set"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.126.927.0 (24.02)
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table DateTableTemplate_b473c9a6-bb23-425e-91ee-8fa7c4efcb80
+ref table 'Task 3_Final Content Data set'
+ref table LocalDateTable_5d1334ae-f530-4021-a5a0-21b9e716dcd4
+

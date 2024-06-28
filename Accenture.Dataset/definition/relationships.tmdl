@@ -1,0 +1,5 @@
+relationship 152c5b0e-0f70-4177-a98f-ab1adbfa9817
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Task 3_Final Content Data set'.Datetime
+	toColumn: LocalDateTable_5d1334ae-f530-4021-a5a0-21b9e716dcd4.Date
+
